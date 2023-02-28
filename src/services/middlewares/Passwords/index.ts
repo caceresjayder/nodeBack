@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
-import { config } from "../../config/config";
 
-const BCRYPT_ROUNDS = parseInt(`${config.BCRYPT_ROUNDS}`);
+const BCRYPT_ROUNDS = parseInt(`${process.env.BCRYPT_SALT}`);
 
 const PasswordHash = async (password: string) => {
   return await bcrypt.hash(password, BCRYPT_ROUNDS);

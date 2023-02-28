@@ -30,8 +30,8 @@ const OnlyUser = (req: any, res: any, next: any) => {
     }
 }
 
-const SameUser = (req: any, res: any, next: any) => {
-
+const SameUserTranfer = (req: any, res: any, next: any) => {
+    
 }
 
-export {OnlyAdmin, OnlyWorker, OnlyUser, SameUser}
+export {OnlyAdmin, OnlyWorker, OnlyUser, SameUserTranfer}

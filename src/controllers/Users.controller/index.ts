@@ -1,5 +1,6 @@
 const models = require('../../db/models');
-import {PasswordHash} from '../../services/Passwords'
+import { Op } from 'sequelize';
+import {PasswordHash} from '../../services/middlewares/Passwords'
 
 interface Idata {
   name: string;
@@ -27,7 +28,13 @@ class UserController{
   }
 
   static async findAll() {
-    const users = await models.user.findAll();
+    const users = await models.user.findAll({
+       attributes: { exclude: ['password']},
+       where: {
+      role: {
+        [Op.not]: 'ADMIN'
+      }
+    }});
     return users;
   }
 
@@ -38,44 +45,32 @@ class UserController{
 
   static async findByID(_id: number) {
     const user = await models.user.findByPk(_id);
-    if (!user) {
-      return "Not Found";
-    } else {
       return user;
-    }
   }
 
   static async update(_id: number, _changes: Partial<Idata>) {
     const userToUpdate = await models.user.findByPk(_id);
-    if (!userToUpdate) {
-      return "Not Found";
-    } else {
       const response = await userToUpdate.update(_changes);
       return response;
-    }
   }
 
   static async userBalanceIncrement(_id: number, _amount: string) {
-    const user: any = this.findByID(_id);
+    const user: any = await this.findByID(_id);
     const response = await user.increment("balance", { by: _amount });
     return response;
   }
 
   static async userBalanceDecrement(_id: number, _amount: string) {
-    const user: any = this.findByID(_id);
+    const user: any = await this.findByID(_id);
     const response = await user.decrement("balance", { by: _amount });
     return response;
   }
 
   static async delete(_id: number) {
     const userToDelete = await models.user.findByPk(_id);
-    if (!userToDelete) {
-      return "Not Found";
-    } else {
       const response = userToDelete.destroy();
       return response;
-    }
-  }
 }
 
+}
 export  {UserController};

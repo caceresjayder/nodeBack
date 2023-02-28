@@ -1,16 +1,16 @@
 const {Strategy} = require('passport-local');
 import { UserController } from '../../../controllers/Users.controller';
-import { PasswordVerify } from '../../Passwords' 
+import { PasswordVerify } from '../../middlewares/Passwords' 
 
 const LocalStrategy = new Strategy(async (email: string, password: string, done: any)  => {
     try{
         const user = await UserController.findByEmail(email);
         if(!user){
-            done({status: 401, message: "Unauthorized"}, false)
+            done({status: 401, message: "Invalid username"}, false)
         }
         const isMatch = await PasswordVerify(password, user.password);
         if(!isMatch){
-            done({status: 401, message: "Unauthorized"}, false)
+            done({status: 401, message: "Invalid username or password"}, false)
         }
         else{
             delete user.dataValues.password;

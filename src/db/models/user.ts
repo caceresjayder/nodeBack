@@ -1,23 +1,20 @@
 "use strict";
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+import {Model, Optional} from 'sequelize'
+
+module.exports = (sequelize: any, DataTypes: any) => {
   class user extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate(models: any) {
       // define association here
     }
   }
   user.init(
     {
-      name: {
-        type: DataTypes.STRING,
-        validate: {
-          is: /^[a-z]+ [a-z]+ ?[a-z]+a? ?[a-z]+a?/gi
-        }},
+      name: DataTypes.STRING,
       email: {
         type: DataTypes.STRING,
         unique: true,
@@ -28,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: {
         type: DataTypes.STRING,
-        min: 8,
+        validate: {
+          min: 8
+        }
       },
       balance:{
         type:  DataTypes.INTEGER,
@@ -37,6 +36,10 @@ module.exports = (sequelize, DataTypes) => {
       role: {
         defaultValue : "USER",
         type : DataTypes.ENUM('ADMIN', 'USER', 'WORKER')
+    },
+    status: {
+      defaultValue: "ACTIVE",
+      type: DataTypes.ENUM('ACTIVE','DISABLED')
     }
   },
     {

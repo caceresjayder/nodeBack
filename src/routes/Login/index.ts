@@ -1,7 +1,6 @@
 import express from "express";
 import passport from "passport";
-import { UserController } from "../../controllers/Users.controller";
-import { signToken } from "../../services/Token";
+import { signToken } from "../../services/middlewares/Token";
 const router = express.Router();
 
 router.use(express.json());

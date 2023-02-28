@@ -1,5 +1,4 @@
 import { Op } from "sequelize";
-
 const models = require("../../db/models");
 
 interface Itransaction {
@@ -24,11 +23,7 @@ class TransactionController {
 
   static async findOne(id: number) {
     const transaction = await models.transaction.findByPk(id);
-    if (!transaction) {
-      return "Not Found";
-    } else {
-      return transaction;
-    }
+    return transaction;
   }
 
   static async findAllOfUser(email: string) {
@@ -37,11 +32,7 @@ class TransactionController {
         [Op.or]: [{ to: email }, { from: email }],
       },
     });
-    if (!transactionsOfUser) {
-      return `Not Found transactions for ${email}`;
-    } else {
-      return transactionsOfUser;
-    }
+    return transactionsOfUser;
   }
 }
 

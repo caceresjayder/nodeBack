@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
-import {config} from '../../config/config';
 
-const Secret = `${config.JWT_SECRET}`
+const Secret = `${process.env.JWT_SECRET}`;
 
 const jwtConfig = {
     expiresIn: '2h'
