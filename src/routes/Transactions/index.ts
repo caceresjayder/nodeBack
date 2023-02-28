@@ -27,7 +27,7 @@ router.get(
 );
 
 router.get(
-  "/transactions/:email",
+  "/transactions/get-of-user",
   passport.authenticate("jwt", { session: false }),
   async (req: any, res: any) => {
     try {
@@ -78,20 +78,6 @@ router.post(
       } else {
         res.status(403).send("You don't have permissions to do this operation");
       }
-    } catch (err) {
-      ErrorHandler(res, err);
-    }
-  }
-);
-
-router.post(
-  "/transactions",
-  passport.authenticate("jwt", { session: false }),
-  OnlyAdmin,
-  async (req: any, res: any) => {
-    try {
-      const response = await TransactionController.create(req.body);
-      res.status(200).send(response);
     } catch (err) {
       ErrorHandler(res, err);
     }

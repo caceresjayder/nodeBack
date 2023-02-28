@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
-const models = require("./models");
+import models from "./models";
 
 for (const model in models) {
   const tableName = models[model].tableName;

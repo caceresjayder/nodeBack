@@ -1,32 +1,38 @@
 import Express from "express";
-import Users from './routes/Users';
-import Transactions from './routes/Transactions';
-import Login from './routes/Login';
-const cors = require('cors');
-require('dotenv').config();
+import Users from "./routes/Users";
+import Transactions from "./routes/Transactions";
+import swaggerUI from "swagger-ui-express";
+const swaggerFIle = require("./swagger-output.json");
+import Login from "./routes/Login";
+const cors = require("cors");
+require("dotenv").config();
 
 const port = 5000;
 
 const app = Express();
 
-const whitelist = ['http://localhost:5000', 'http://localhost:3000']
+const whitelist = ["http://localhost:5000", "http://localhost:3000"];
 const corsOpts = {
   origin: (origin: any, done: any) => {
-    if(whitelist.indexOf(origin) !== -1 || !origin){
-      done(null, true)
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      done(null, true);
     } else {
-      done(new Error('Not allowed by CORS'))
+      done(new Error("Not allowed by CORS"));
     }
   },
-}
+};
 
-app.use(cors(corsOpts))
+app.use(cors(corsOpts));
 app.use(Express.static("public"));
-require('./services/Auth')
+require("./services/Auth");
+app.use("/doc", swaggerUI.serve, swaggerUI.setup(swaggerFIle));
+
+
+
 
 app.use(Users);
 app.use(Transactions);
-app.use(Login)
+app.use(Login);
 
 app.get("/status", (req: any, res: any) => {
   res.status(200).send({ message: "Online" });
@@ -35,7 +41,6 @@ app.get("/status", (req: any, res: any) => {
 app.use((req: any, res: any, next: any) => {
   res.status(404).send("Resource Not Fund!");
 });
-
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

@@ -1,4 +1,4 @@
-const models = require('../../db/models');
+import models from '../../db/models';
 import { Op } from 'sequelize';
 import {PasswordHash} from '../../services/middlewares/Passwords'
 

@@ -1,5 +1,5 @@
 import { Op } from "sequelize";
-const models = require("../../db/models");
+import models from '../../db/models';
 
 interface Itransaction {
   to: string;

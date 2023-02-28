@@ -2,12 +2,12 @@
   "name": "nodeback",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "start": "tsc & node .",
-    "dev": "nodemon src/index.ts",
-    "swagger:parse": "npx swagger-typescript-api -p ./swagger.json -o ./src -n swagger.ts"
+    "dev": "tsc && nodemon .",
+    "swagger:parse": "ts-node src/swagger.ts"
   },
   "keywords": [],
   "author": "",
