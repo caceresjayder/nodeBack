@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node dist/swagger.js",
     "start": "tsc & node .",
     "dev": "tsc && node dist/swagger.js && nodemon .",
     "swagger:parse": "ts-node src/swagger.ts"
