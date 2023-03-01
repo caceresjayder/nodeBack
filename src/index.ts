@@ -7,15 +7,16 @@ import Login from "./routes/Login";
 const cors = require("cors");
 require("dotenv").config();
 import DB_Connect from "./config/sequelizeDB";
+import rateLimit from "express-rate-limit";
 
 const port = process.env.PORT || 80;
 
 const app = Express();
 
-const whitelist = ["http://localhost:5000", "http://localhost:3000"];
+const whitelist = ["https://www.rafacli.site/", "https://nodeback-production-3eb4.up.railway.app/"];
 const corsOpts = {
   origin: (origin: any, done: any) => {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
+    if (whitelist.indexOf(origin) !== -1) {
       done(null, true);
     } else {
       done(new Error("Not allowed by CORS"));
@@ -23,8 +24,17 @@ const corsOpts = {
   },
 };
 
-app.use(cors());
-app.use(Express.static("public"));
+const apiLimiter = rateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+})
+
+app.disable('x-powered-by')
+app.use(apiLimiter)
+app.use(cors(corsOpts));
+//app.use(Express.static("public"));
 require("./services/Auth");
 app.use("/doc", swaggerUI.serve, swaggerUI.setup(swaggerFIle));
 
