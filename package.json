@@ -5,9 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc && node dist/swagger.js",
-    "start": "node dist/index.js",
-    "dev": "tsc && node dist/swagger.js && nodemon .",
-    "swagger:parse": "ts-node src/swagger.ts"
+    "start": "node .",
+    "dev": "tsc && node dist/swagger.js && nodemon ."
   },
   "keywords": [],
   "author": "",
