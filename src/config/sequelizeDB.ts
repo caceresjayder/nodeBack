@@ -2,6 +2,8 @@ import { Sequelize } from "sequelize";
 require("dotenv").config();
 console.log("db_variable is: ", process.env.DB_URL)
 const db_url = process.env.DB_URL as string
+console.log("const: ", db_url)
+
 
 const sequelize = new Sequelize(db_url)
 
