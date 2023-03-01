@@ -6,6 +6,7 @@ const swaggerFIle = require("./swagger-output.json");
 import Login from "./routes/Login";
 const cors = require("cors");
 require("dotenv").config();
+import DB_Connect from "./config/sequelizeDB";
 
 const port = process.env.EXPRESS_PORT || 5000;
 
@@ -42,6 +43,8 @@ app.use((req: any, res: any, next: any) => {
   res.status(404).send("Resource Not Fund!");
 });
 
+
+DB_Connect()
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
