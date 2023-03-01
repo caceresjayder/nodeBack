@@ -1,4 +1,4 @@
-import { Sequelize } from "sequelize";
+const { Sequelize } = require("sequelize");
 require("dotenv").config();
 const db_url = process.env.DB_URL as string
 
