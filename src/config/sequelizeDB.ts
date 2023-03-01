@@ -7,7 +7,7 @@ const sequelize = new Sequelize(db_url)
 
 const DB_Connect = async () => {
     try{
-        const { result }: any = await sequelize.authenticate()
+        const result = await sequelize.authenticate()
         console.log(`The result is ${result}`)
     }
     catch(err){
