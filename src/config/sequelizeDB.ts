@@ -7,8 +7,8 @@ const sequelize = new Sequelize(db_url)
 
 const DB_Connect = async () => {
     try{
-        await sequelize.authenticate()
-        console.log(`Succesfully Connected to database`)
+        const { rows }: any = await sequelize.query("SELECT NOW();")
+        console.log(`Succesfully Connected to database and the hour is ${rows[0].now}`)
     }
     catch(err){
         console.error("Connection with database: errored", err)
