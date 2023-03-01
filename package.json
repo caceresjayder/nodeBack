@@ -4,9 +4,9 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node ./swagger.js",
     "start": "tsc & node .",
-    "dev": "tsc && nodemon .",
+    "dev": "tsc && node dist/swagger.js && nodemon .",
     "swagger:parse": "ts-node src/swagger.ts"
   },
   "keywords": [],

@@ -30,6 +30,7 @@ router.get(
   "/transactions/get-of-user",
   passport.authenticate("jwt", { session: false }),
   async (req: any, res: any) => {
+    
     try {
       const user = await UserController.findByID(req.user.issuer)
       const transactionsByUserEmail = await TransactionController.findAllOfUser(

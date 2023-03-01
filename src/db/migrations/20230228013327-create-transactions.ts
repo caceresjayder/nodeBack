@@ -2,7 +2,7 @@
   /** Script Provided by https://github.com/caceresjayder */
   /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface: any, Sequelize: any) {
     await queryInterface.createTable('transactions', {
       id: {
         type: Sequelize.INTEGER,
@@ -36,7 +36,7 @@ module.exports = {
     });
   },
 
-  async down (queryInterface, Sequelize) {
+  async down (queryInterface: any, Sequelize: any) {
     await queryInterface.dropTable('transactions');
   },
 };

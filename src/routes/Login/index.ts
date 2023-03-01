@@ -9,6 +9,25 @@ router.post(
   "/login",
   passport.authenticate("local", { session: false }),
   async (req: any, res: any, next: any) => {
+    /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        type: "object",
+                        properties : {
+                          username: {
+                            type: "string"
+                          },
+                          password: {
+                            type: "string"
+                          }
+                        }
+                    }  
+                }
+              }
+            }
+    */ 
     try {
       const user = req.user;
       const payload = {
