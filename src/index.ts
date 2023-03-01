@@ -23,7 +23,7 @@ const corsOpts = {
   },
 };
 
-//app.use(cors());
+app.use(cors());
 app.use(Express.static("public"));
 require("./services/Auth");
 app.use("/doc", swaggerUI.serve, swaggerUI.setup(swaggerFIle));
