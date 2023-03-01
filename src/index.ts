@@ -13,7 +13,7 @@ const port = process.env.PORT || 80;
 
 const app = Express();
 
-const whitelist = ["https://www.rafacli.site/", "https://nodeback-production-3eb4.up.railway.app/"];
+const whitelist = ["https://www.rafacli.site", "https://nodeback-production-3eb4.up.railway.app"];
 const corsOpts = {
   origin: (origin: any, done: any) => {
     if (whitelist.indexOf(origin) !== -1) {
