@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc && node dist/swagger.js",
+    "build": "tsc && node dist/rcgenerator.js && node dist/swagger.js && sequelize db:drop && sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
     "start": "node .",
     "dev": "tsc && node dist/swagger.js && nodemon ."
   },
