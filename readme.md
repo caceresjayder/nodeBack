@@ -28,7 +28,7 @@ Users to test:
 - Passport
 - JWT
 
-![Schema](shcema.png)
+![Schema](schema.png)
 
 
 
