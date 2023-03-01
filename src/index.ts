@@ -14,15 +14,15 @@ const port = process.env.PORT || 80;
 const app = Express();
 
 const whitelist = ["https://www.rafacli.site", "https://nodeback-production-3eb4.up.railway.app"];
-const corsOpts = {
-  origin: (origin: any, done: any) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      done(null, true);
-    } else {
-      done(new Error("Not allowed by CORS"));
-    }
-  },
-};
+const corsOpts = function (req: any, callback: any) {
+  var corsOptions;
+  if (whitelist.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false } // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+}
 
 const apiLimiter = rateLimit({
   windowMs: 5 * 60 * 1000,
