@@ -11,6 +11,30 @@ module.exports = {
       role:'ADMIN',
       createdAt: new Date(),
       updatedAt: new Date()
+    },{
+      name:'User One',
+      email:'user1@w.com',
+      password:'$2b$10$MMXJszIWk4zm/.cPMoS26eNPvm1i9yH/dKyxqgmAUG0eZJqBT7Bh6',
+      balance:1000,
+      role:'USER',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      name:'User Two',
+      email:'user2@w.com',
+      password:'$2b$10$MMXJszIWk4zm/.cPMoS26eNPvm1i9yH/dKyxqgmAUG0eZJqBT7Bh6',
+      balance:1000,
+      role:'USER',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name:'User Three',
+      email:'user3@w.com',
+      password:'$2b$10$MMXJszIWk4zm/.cPMoS26eNPvm1i9yH/dKyxqgmAUG0eZJqBT7Bh6',
+      balance:1000,
+      role:'USER',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }])
     /**
      * Add seed commands here.
