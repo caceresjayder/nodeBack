@@ -33,10 +33,10 @@ const apiLimiter = rateLimit({
 
 app.disable('x-powered-by')
 app.use(apiLimiter)
+app.use("/doc", swaggerUI.serve, swaggerUI.setup(swaggerFIle));
 app.use(cors(corsOpts));
 //app.use(Express.static("public"));
 require("./services/Auth");
-app.use("/doc", swaggerUI.serve, swaggerUI.setup(swaggerFIle));
 
 
 
