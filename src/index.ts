@@ -8,7 +8,7 @@ const cors = require("cors");
 require("dotenv").config();
 import DB_Connect from "./config/sequelizeDB";
 
-const port = process.env.EXPRESS_PORT || 5000;
+const port = process.env.PORT || 80;
 
 const app = Express();
 
