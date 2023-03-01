@@ -7,7 +7,7 @@ import Login from "./routes/Login";
 const cors = require("cors");
 require("dotenv").config();
 
-const port = 5000;
+const port = process.env.EXPRESS_PORT || 5000;
 
 const app = Express();
 
